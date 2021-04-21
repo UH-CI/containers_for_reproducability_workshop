@@ -1,0 +1,15 @@
+remote_theme: marella/jekyll-theme-documentation
+#remote_theme: pawamoy/jekyll-readthedocs
+
+#theme: jekyll-theme-cayman
+#theme: jekyll-theme-minimal
+
+permalink: pretty
+nav:
+  - Welcome and Background:
+    - Welcome: ''
+  - Intro to  Docker:
+    - Using Docker: block1/intro-to-docker
+  - Intro to Singularity:
+    - Intro to Singularity: block3/intro-singularity
+  
