@@ -19,7 +19,7 @@
   * Can run 1,000s of containers on a single machine
   * Leverages kernel features (requirements on kernel version)
   * Start up time ~100ms
-  
+
 * VMs
   * OS level isolation with virtualized hardware
   * Can run dozens of VMs on a single machine
@@ -27,19 +27,23 @@
   * Start up time ~minutes
 
 ### The Docker Platform
-Docker is a platform (among serveral) for building and executing containers.
+Docker is a platform (among several) for building and executing containers.
 
 * Images - Container “templates”. Essentially root filesystems with a little metadata (exposed ports, volumes, etc.)
-* Container runtime - Create containers from images and run commands in them. 
+* Container runtime - Create containers from images and run commands in them.
 * Docker Hub - Central, public repository of images.
-* Additional Tooling: 
-    * Additional client APIs - run commands in containers, get resources consumed, view logs, 
+* Additional Tooling:
+    * Additional client APIs - run commands in containers, get resources consumed, view logs,
     * Docker Compose, Machine, Swarm - Tools for distributing containers across multiple hosts
 
 ### Exercise: Initial setup
-Typically, accessing the docker daemon requires the user to be in the docker group. For the purposes of this introduction,
- we can simply do everything as the ubuntu user, which you are already logged in as. 
+Typically, accessing the docker daemon on linux requires the user to be in the docker group. For the purposes of this introduction we can simply use the docker lab online to do everything.
 
+NOTE - you can install docker on the desktop by downloading installation pacakges here https://www.docker.com/get-started
+
+Go to https://labs.play-with-docker.com/ and select "Start".
+
+Then click "Add Instance" on the right side - this will create a VM with docker installed.
 
 Make sure you can access the docker daemon; you can verify this by checking the version:
 ```
@@ -155,7 +159,7 @@ touch Dockerfile
 Now that you created your own Dockerfile, you can add all the parts you need for it to build and run correctly. First we will start with the FROM instruction. We can use the `FROM` instruction to start our new image from a known image. This should be the first line of our Dockerfile. We will start our image from an official Ubuntu 16.04 image:
 
 
-> FROM ubuntu:16.04 
+> FROM ubuntu:16.04
 
 
 #### The RUN instruction
@@ -167,7 +171,7 @@ The Dockerfile will look like this now:
 >
 > RUN apt-get update && apt-get install -y wget
 
- 
+
 #### The ADD instruction
 We can also add local files to our image using the `ADD` instruction. First, create a new file:
 ```
@@ -184,7 +188,7 @@ We can add this file in our local directory to the `/root` directory in our cont
 
 #### The ENTRYPOINT instruction
 The ENTRYPOINT instruction defines the executable that will be run within each container started from the image. Though
-it is possible to ignore the ENTRYPOINT and run a different executable when lauching a container, providing an ENTRYPOINT
+it is possible to ignore the ENTRYPOINT and run a different executable when launching a container, providing an ENTRYPOINT
 definition in the image is convenient.
 
 The value for ENTRYPOINT should be of the form: `["executable", "param1", "param2", ...]`
@@ -203,7 +207,7 @@ For this example, we will use the `ls` program as our entrypoint.
 
 Note: additional arguments can still be passed to the entrypoint when launching a container.
 
-Now you can build and run your docker image. To name your docker image, we will need to use the `-t` flag, followed by the name of the image. Note that the `.` at the end of the command is to tell docker where your Dockerfile is located. In this situation, it is located in the current directory, which is `.` in linux systems. Try the command below, replacing "YOUR-IMAGE-HERE" with the name you want to call your image. 
+Now you can build and run your docker image. To name your docker image, we will need to use the `-t` flag, followed by the name of the image. Note that the `.` at the end of the command is to tell docker where your Dockerfile is located. In this situation, it is located in the current directory, which is `.` in linux systems. Try the command below, replacing "YOUR-IMAGE-HERE" with the name you want to call your image.
 
 ```
 docker build -t YOUR-IMAGE-NAME .
@@ -212,32 +216,35 @@ docker run YOUR-IMAGE-NAME
 
 
 ### Exercise: Building a Pre-trained Image Classifier Docker Image
-In this workshop we will be working with a pre-trained image classifier based on Tensoflow. Our first step will be to 
+In this workshop we will be working with a pre-trained image classifier based on Tensoflow. Our first step will be to
 build a Docker image containing the image classifier software.
 
-We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to 
+We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to
 show how one would package that into a Docker image for computational portability and reproducibility.
 
-You can delete or override your previous Dockerfile, because now we will need a different one. Open a file called Dockerfile in the text editor of your choice and work through the following steps.  
+You can delete or override your previous Dockerfile, because now we will need a different one. Open a file called Dockerfile in the vi text editor and work through the following steps.  
 
 ##### Step 1. Descend from the official Tensflow image
-For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
+For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has
 everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`
 
 Add a line to your Dockerfile to start your image with this image as a base.
 
 ##### Step 2. Install app requirements
-For this app, we need to install the `requests` package (a python package dependency) using the Python package manager `pip`. 
+For this app, we need to install the `requests` package (a python package dependency) using the Python package manager `pip`.
 If you aren't familiar with `pip`  just know that the package can be installed by running the following command in the shell
 ```
 pip install requests
 ```
-What Dockerfile instruction would you use to ensure the `requests` package is installed in your image? 
+What Dockerfile instruction would you use to ensure the `requests` package is installed in your image?
 
 ##### Step 3. Add the python script
-Our app uses a single python script, `classify_image.py`, located in the repository 
-(https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). You can either copy/paste the code from the github repo into a file called `classify_image.py` or clone this repo and copy this file over to your working directory. 
-
+Our app uses a single python script, `classify_image.py`, located in the repository
+(https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). We have shortned that to http://go.hawaii.edu/JTV You can either copy/paste the code from the github repo into a file called `classify_image.py` or clone this repo and copy this file over to your working directory.  on the docker lab use
+```
+wget http://go.hawaii.edu/JTV
+mv JTV classify_image.py
+```
 
 Now let's add this Python script to our image.
 
@@ -248,7 +255,7 @@ We will launch our app using `python` which can be accomplished by executing:
 python /path/to/classify_image.py
 ```
 
-You will need to replace `/path/to/` to the location of where your classify_image.py file is. 
+You will need to replace `/path/to/` to the location of where your classify_image.py file is.
 
 Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
 
@@ -257,8 +264,8 @@ https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/
 
 ##### Step 5. Build the image
 
-In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
-image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the 
+In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the
+image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the
 current working directory using a dot (.) character.
 
 If you have a docker hub account, you can tag your image using your docker hub username with something like:
@@ -270,9 +277,9 @@ Otherwise, you don't need to specify the username, but you will not be able to p
 ### Running a Docker Container
 We use the `docker run` command to run containers from an image. We pass a command to run in the container.
 
-Let's run a container from our classifier Docker image to classify an image! All we need to do is pass it a URL 
-containing an image. For example, if we wanted to classify this URL 
-https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
+Let's run a container from our classifier Docker image to classify an image! All we need to do is pass it a URL
+containing an image. For example, if we wanted to classify this URL
+https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg (shortened http://go.hawaii.edu/JTx)
 
 we could execute:
 
@@ -280,7 +287,7 @@ we could execute:
 docker run <image> --image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
 ```  
 
-NOTE: In this case, `--image_file` does not have to do with a docker image, but instead refers to a JPEG picture from the internet. This tag expects a full URL to a picture file. 
+NOTE: In this case, `--image_file` does not have to do with a docker image, but instead refers to a JPEG picture from the internet. This tag expects a full URL to a picture file.
 
 Let's look at a few more things we can do with containers.
 
@@ -290,7 +297,7 @@ To run a container and attach to it in one command, use the `-it` flags. Here we
 docker run -it ubuntu bash
 ```
 
-NOTE: You will need to type the `exit` command to continue from here. 
+NOTE: You will need to type the `exit` command to continue from here.
 
 #### Running a Container in Daemon mode ####
 We can also run a container in the background. We do so using the `-d` flag:
@@ -323,7 +330,3 @@ We can remove a docker container using the `docker rm` command (optionally passi
 ```
 $ docker rm -f a2f968b8443f
 ```
-
-
-
-
