@@ -1,4 +1,4 @@
-# Reproducibility Workshop: Git and Jupyter Notebooks
+# Reproducibility Workshop: Containers
 
 <h2>Date: April 23rd, 2021 2pm-4pm HST</h2>
 <h2>Location: Virtual</h2>

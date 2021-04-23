@@ -3,7 +3,7 @@
 
 ## 1. Docker and Singularity (Lecture)
 
-#### Important: 
+#### Important:
 Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but they have distinct differences.
 
 #### Docker:
@@ -26,7 +26,7 @@ The workflow we recommend for most researchers is to create Docker containers of
 
 ## 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
 
-We don't have to install singularity for this workshop as it is already installed on the VM but the instructions below are useful outside of this workshop.  Jump to section [2.4](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block3/intro-singularity.md#24-check-installation)
+We don't have to install singularity for this workshop as it is already installed on Mana but the instructions below are useful outside of this workshop.  Jump to section [2.4](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block3/intro-singularity.md#24-check-installation)
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
@@ -36,11 +36,17 @@ While Singularity is more likely to be used on a remote system, e.g. HPC or clou
 
 To Install Singularity on your laptop or desktop PC follow the instructions from Singularity: [Install Singularity Windows or Mac ](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-windows-or-mac) or [Install Singularity on Linux](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-linux)
 
-## 2.2 HPC (Not Needed For the Workshop Today - Use At Home)
+## 2.2 Mana HPC
 
-Load the Singularity module on a HPC
+Go to https://mana.its.hawaii.edu to access the Mana HPC and then open a terminal using the "Cluster" menu item.
 
-If you are interested in working on HPC, you may need to contact your systems administrator and request they install [Singularity](https://sylabs.io/guides/3.2/user-guide/installation.html#installationrequest).
+Start an interactive session:
+```
+srun -I30 -p sandbox -c 2 --mem 12G -t 60 /bin/bash
+```
+
+Load the Singularity module on the Mana HPC
+
 
 Most HPC systems are running Environment Modules with the simple command `module`. You can check to see what is available:
 
@@ -48,36 +54,14 @@ Most HPC systems are running Environment Modules with the simple command `module
   $ module avail
 ```
 
-If Singularity is installed:
+Singularity on Mana is loaded via:
 
 ```
-  $ module load singularity
-    
-```
-
-## 2.3 XSEDE Jetstream Cloud (Not Needed For the Workshop Today - Use At Home)
-
-We have already installed Singularity for you on your Jestream VM but in the future if you need to you can do the following:
-
-Jetstream staff have deployed an Ansible playbooks called `ez` installation which includes [Singularity](https://cyverse-ez-quickstart.readthedocs-hosted.com/en/latest/#) that only requires you to type a short line of code.
-
-Start a featured instance on Atmosphere or Jetstream.
-
-Type in the following:
+  $ module load tools/Singularity
 
 ```
-    $ ezs
 
-    * Updating ez singularity and installing singularity (this may take a few minutes, coffee break!)
-    Cloning into '/opt/cyverse-ez-singularity'...
-    remote: Counting objects: 11, done.
-    remote: Total 11 (delta 0), reused 0 (delta 0), pack-reused 11
-    Unpacking objects: 100% (11/11), done.
-    Checking connectivity... done.
-```
-
-
-## 2.4 Check Installation (Jump to Here for the Workshop)
+## 2.3 Check Installation
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
@@ -138,7 +122,7 @@ You can use the `pull` command to download pre-built images from a number of Con
 
 Container Registries:
 
-* `shub` - images hosted on Singularity Hub 
+* `shub` - images hosted on Singularity Hub
 * `library` - *this is only accessible on Singularity 3 or greater
 * `docker` - images hosted on Docker Hub
 
@@ -356,7 +340,7 @@ When Singularity creates the new file system inside a container it ignores direc
 	Singularity: Invoking an interactive shell within container...
 	$Singularity ubuntu-16.04.simg:~> ls /xdisk
 	atest.txt
-	
+
 ```
 The above commands - you create a "xdisk" folder at the root space and then we bind it to the container so it is available inside the container and start the container and go inside the container and then list the files from inside the container in "xdisk" - note that the file from the host we made "atest.txt" is in the container.
 
