@@ -60,6 +60,8 @@ Attendees will learn about how to use containers to encapsulate software, OS, de
   </table>
 
 
+# Materials
+
 ## Intro to Docker
 * [Using Docker](./block1/intro-to-docker.md)
   * [What is a container?](./block1/intro-to-docker.md#what-is-a-container)
@@ -75,7 +77,7 @@ Attendees will learn about how to use containers to encapsulate software, OS, de
 ## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
   * [Singularity Installation](./block3/intro-singularity.md#2-singularity-installation )
-  * [Downloading Singulairty Containers](./block3/intro-singularity.md#3-downloading-singularity-containers)
+  * [Downloading Singularity Containers](./block3/intro-singularity.md#3-downloading-singularity-containers)
   * [Running Singularity Conainers](./block3/intro-singularity.md#4-running-singularity-containers--lecture)
   * [Singularity Resources](./block3/intro-singularity.md#5-singularity-related-resources)
 
