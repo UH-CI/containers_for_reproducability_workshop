@@ -330,3 +330,38 @@ We can remove a docker container using the `docker rm` command (optionally passi
 ```
 $ docker rm -f a2f968b8443f
 ```
+
+### Publishing to DockerHub
+Creating a container on your local system is useful but it is really useful to be able to access that container image anywhere (including be able to use it with Singularity later).
+
+There are online repositories for docker containers (Dockerhub, Quay.io etc) that allow you and other to easily pull the published containers for use on other systems in the same way that you have used the "pull" command to access "ubuntu" or "python" images.
+
+First you must have a DockerHub account - as you will use these credentials when you "push" your container to your account.
+
+
+Assuming you have created a Dockerhub account you can push an image to your account.
+
+First your image will need to be tagged with your username the image name and a "tag" which can be a version number or "latest" is common.
+
+You can either do this by building the image with with the correct nameing:
+```
+docker build -t <user-name>/<image-name>:<tag>
+```
+
+Or you can use the tag command to add a new name and tag to an existing image id.
+
+If you don't know the id you can use the follwoing to find it:
+```
+docker images
+```
+Then you can tag that image.
+```
+docker tag <image−id> <user−name>/<image−name>:<tag>
+```
+
+Now you are ready to publish the container to Dockerhub:
+```
+docker push <username>/<image-name>:<tag>
+```
+
+docker will ask for login credentials to your Dockerhub account (Don't do this in the Docker Lab environment since it isn't a secured environment to have you credentials in).

@@ -10,7 +10,7 @@
 
 This FREE workshop is sponsored by the University of Hawai'i Information Technology Service Cyberinfrastructure group and Hawaii Data Science Institute (HI-DSI)
 
-This workshop focuses specifically on introducing the docker and singularity container technologies in the context of support reproducible science.
+This workshop focuses specifically on introducing the docker and singularity container technologies in the context of supporting portable computation and reproducible science.
 
 Attendees will learn about how to use containers to encapsulate software, OS, dependencies and data in a way that allows other to reproduce results.
 
@@ -21,7 +21,7 @@ Attendees will learn about how to use containers to encapsulate software, OS, de
 * Have a basic understanding of containers
 * Have a basic understanding of docker
 * Able to create and manage docker containers
-* Able to run singularity containers
+* Able to run singularity containers on the Mana HPC
 
 
 ## Requirements before the Workshop:
