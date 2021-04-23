@@ -74,8 +74,10 @@ Attendees will learn about how to use containers to encapsulate software, OS, de
 
 ## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
-  * [Singularity Installation](./block3/intro-singularity.md#Singularity Installation)
-
+  * [Singularity Installation](./block3/intro-singularity.md#2-singularity-installation )
+  * [Downloading Singulairty Containers](./block3/intro-singularity.md#3-downloading-singularity-containers)
+  * [Running Singularity Conainers](./block3/intro-singularity.md#4-running-singularity-containers--lecture)
+  * [Singularity Resources](./block3/intro-singularity.md#5-singularity-related-resources)
 
 
 Material adapted from Joe Stubbs (TACC), Julia Looney (TACC), Anagha Jamthe (TACC), Sean Cleveland (UH) - PEARC19 "HPC In The Cloud" workshop https://tacc.github.io/pearc19-hpc-in-the-cloud/

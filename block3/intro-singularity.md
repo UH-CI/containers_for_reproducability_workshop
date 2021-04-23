@@ -24,7 +24,8 @@ Singularity uses a 'flow' whereby you can (1) create and modify images on your d
 
 The workflow we recommend for most researchers is to create Docker containers of their software and then run them on HPC and shared resources with Singularity using Singularity's ability to convert the Docker image to a Singularity image. Docker is simpler to install on most modern operating systems that are on a laptop or desktop.
 
-### 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
+### 2. Singularity Installation 
+(Not Needed For the Workshop Today  - Move to Section 2.4)
 
 We don't have to install singularity for this workshop as it is already installed on Mana but the instructions below are useful outside of this workshop.  Jump to section [2.4](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block3/intro-singularity.md#24-check-installation)
 
