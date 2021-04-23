@@ -365,3 +365,7 @@ docker push <username>/<image-name>:<tag>
 ```
 
 docker will ask for login credentials to your Dockerhub account (Don't do this in the Docker Lab environment since it isn't a secured environment to have you credentials in).
+
+A best practice is to also have a github or version controlled repository that holds your Dockerfile and any of the scripts or files necessary to build the container.  You can link this to the Dockerhub image repository and even provide README documentation for other and even yourself if you have to come back months/years later and have forgotten what you did.
+
+Remember just have the Dockerfile won't necessarily make a reproducible container as some of the libraries or OS environments may change - so having that docker image built and in a repository is essentially a "frozen" version of your environment, code, data etc that is inside that container image.
