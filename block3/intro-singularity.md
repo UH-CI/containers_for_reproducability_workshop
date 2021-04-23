@@ -308,14 +308,14 @@ You can inspect the build of your container using the `inspect` command
 
 ```
 
-### 4.5 Using the `--sandbox` and `--writable` commands
+### 4.5 Using the `--sandbox` and `--writable` commands (On your own laptop or server only)
 
 As of Singularity v2.4 by default `build` produces immutable images in the 'squashfs' file format. This ensures reproducible and verifiable images.
 
 Creating a `--writable` image must use the `sudo` command, thus the owner of the container is `root`
 
 ```
-   	$ sudo singularity build --writable ubuntu-master.simg docker://ubuntu
+   	$ sudo singularity build --writable ubuntu_docker.simg docker://ubuntu
 ```
 
 You can convert these images to writable versions using the `--writable` and `--sandbox` commands.
@@ -323,7 +323,7 @@ You can convert these images to writable versions using the `--writable` and `--
 When you use the `--sandbox` the container is written into a directory structure. Sandbox folders can be created without the `sudo` command.
 
 ```
-    	$ singularity build --sandbox lolcow/ docker://ubuntu
+  $ singularity build --sandbox lolcow/ docker://ubuntu
 	@vm142-73:~$ cd lolcow/
 	@vm142-73:~/lolcow$ ls
 	bin  boot  dev  environment  etc  home  lib  lib64  media  mnt  opt  proc  run  sbin  singularity  srv  sys  tmp  usr  var
