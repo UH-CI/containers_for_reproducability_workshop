@@ -74,3 +74,7 @@ Attendees will learn about how to use containers to encapsulate software, OS, de
 
 ## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
+
+
+
+Material adapted from Joe Stubbs (TACC), Julia Looney (TACC), Anagha Jamthe (TACC), Sean Cleveland (UH) - PEARC19 "HPC In The Cloud" workshop https://tacc.github.io/pearc19-hpc-in-the-cloud/ 
