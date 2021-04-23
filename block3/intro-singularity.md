@@ -1,7 +1,7 @@
 
 # Introduction to Singularity
 
-## 1. Docker and Singularity (Lecture)
+### 1. Docker and Singularity (Lecture)
 
 #### Important:
 Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but they have distinct differences.
@@ -24,7 +24,7 @@ Singularity uses a 'flow' whereby you can (1) create and modify images on your d
 
 The workflow we recommend for most researchers is to create Docker containers of their software and then run them on HPC and shared resources with Singularity using Singularity's ability to convert the Docker image to a Singularity image. Docker is simpler to install on most modern operating systems that are on a laptop or desktop.
 
-## 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
+### 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
 
 We don't have to install singularity for this workshop as it is already installed on Mana but the instructions below are useful outside of this workshop.  Jump to section [2.4](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block3/intro-singularity.md#24-check-installation)
 
@@ -32,11 +32,11 @@ Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
 While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine or dev system.
 
-## 2.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
+#### 2.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
 
 To Install Singularity on your laptop or desktop PC follow the instructions from Singularity: [Install Singularity Windows or Mac ](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-windows-or-mac) or [Install Singularity on Linux](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-linux)
 
-## 2.2 Mana HPC
+#### 2.2 Mana HPC
 
 Go to https://mana.its.hawaii.edu to access the Mana HPC and then open a terminal using the "Cluster" menu item.
 
@@ -61,7 +61,7 @@ Singularity on Mana is loaded via:
 
 ```
 
-## 2.3 Check Installation
+#### 2.3 Check Installation
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
@@ -110,13 +110,13 @@ website: http://singularity.lbl.gov/
 ```
 
 
-## 3. Downloading Singularity containers
+### 3. Downloading Singularity containers
 
 The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipie Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
-## Exercise 1
+#### Exercise 1
 
-### 3.1: Pulling a Container
+#### 3.1: Pulling a Container
 
 You can use the `pull` command to download pre-built images from a number of Container Registries, here we'll be focusing on the [DockerHub](https://hub.docker.com/).
 
@@ -262,7 +262,7 @@ You can change these by specifying the location of the cache and temporary direc
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
 
-## 4. Running Singularity Containers  (Lecture)
+### 4. Running Singularity Containers  (Lecture)
 
 Commands:
 
@@ -278,28 +278,28 @@ Commands:
 
 `--sandbox` - copies the guts of the container into a directory structure.
 
-## Exercise 2
+#### Exercise 2
 
-### 4.1 Using the `exec` command
+##3# 4.1 Using the `exec` command
 
 
 ```
     $ singularity exec ubuntu_docker.simg cat /etc/os-release
 ```
 
-### 4.2 Using the `shell` command
+#### 4.2 Using the `shell` command
 
 ```
     $ singularity shell ubuntu_docker.simg
 ```
 
-### 4.3 Using the `run` command
+#### 4.3 Using the `run` command
 
 ```
     $ singularity run ubuntu_docker.simg
 ```
 
-### 4.4 Using the `inspect` command
+#### 4.4 Using the `inspect` command
 
 You can inspect the build of your container using the `inspect` command
 
@@ -308,7 +308,7 @@ You can inspect the build of your container using the `inspect` command
 
 ```
 
-### 4.5 Using the `--sandbox` and `--writable` commands (On your own laptop or server only)
+#### 4.5 Using the `--sandbox` and `--writable` commands (On your own laptop or server only)
 
 As of Singularity v2.4 by default `build` produces immutable images in the 'squashfs' file format. This ensures reproducible and verifiable images.
 
@@ -329,7 +329,7 @@ When you use the `--sandbox` the container is written into a directory structure
 	bin  boot  dev  environment  etc  home  lib  lib64  media  mnt  opt  proc  run  sbin  singularity  srv  sys  tmp  usr  var
 ```
 
-### 4.6 Bind Paths
+#### 4.6 Bind Paths
 
 When Singularity creates the new file system inside a container it ignores directories that are not part of the standard kernel, e.g. `/scratch`, `/xdisk`, `/global`, etc. These paths can be added back into the container by binding them when the container is run.
 
@@ -347,7 +347,7 @@ The above commands - you create a "xdisk" folder at the root space and then we b
 The system administrator can also define what is added to a container. This is important on campus HPC systems that often have a `/scratch` or `/xdisk` directory structure. By editing the `/etc/singularity/singularity.conf` a new path can be added to the system containers.
 
 
-## 5 Singularity Related Resources
+### 5 Singularity Related Resources
 
 We have only scratched the surface of using Singularity. For more information and resources see the links below.
 
@@ -359,7 +359,7 @@ We have only scratched the surface of using Singularity. For more information an
 
 [NIH HPC](https://hpc.nih.gov/apps/singularity.html)
 
-## Singularity Talks
+#### Singularity Talks
 
 Gregory Kurtzer, creator of Singularity has provided two good talks online:
 
@@ -370,10 +370,3 @@ Gregory Kurtzer, creator of Singularity has provided two good talks online:
 Vanessa Sochat, lead developer of Singularity Hub, also has given a great talk on:
 
 [Singularity](https://docs.google.com/presentation/d/14-iKKUpGJC_1qpVFVUyUaitc8xFSw9Rp3v_UE9IGgjM/pub?start=false&loop=false&delayms=3000&slide=id.g1c1cec989b_0_154)
-
-
-
-
-```python
-
-```
