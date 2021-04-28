@@ -4,7 +4,7 @@
 ### 1. Docker and Singularity (Lecture)
 
 #### Important:
-Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but they have distinct differences.
+Docker and Singularity are friends  but they have distinct differences.
 
 #### Docker:
 
